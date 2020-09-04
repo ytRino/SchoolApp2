@@ -27,4 +27,12 @@
         android:text="Application Not Responding"
         />
 
+    <Button
+        android:id="@+id/network"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/Widget.MaterialComponents.Button.TextButton"
+        android:text="Network"
+        />
+
 </LinearLayout>
