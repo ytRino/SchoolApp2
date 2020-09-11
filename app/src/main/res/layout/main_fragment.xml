@@ -35,4 +35,12 @@
         android:text="Network"
         />
 
+    <Button
+        android:id="@+id/handler"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/Widget.MaterialComponents.Button.TextButton"
+        android:text="Handler"
+        />
+
 </LinearLayout>

@@ -22,6 +22,7 @@ public class MainFragment extends Fragment {
     binding.viewThread.setOnClickListener(v -> open(new ViewThreadFragment()));
     binding.anr.setOnClickListener(v -> open(new AnrFragment()));
     binding.network.setOnClickListener(v -> open(new NetworkFragment()));
+    binding.handler.setOnClickListener(v -> open(new HandlerFragment()));
   }
 
   private void open(Fragment fragment) {
