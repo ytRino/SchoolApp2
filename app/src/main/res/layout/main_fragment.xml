@@ -51,4 +51,12 @@
         android:text="RxJava"
         />
 
+    <Button
+        android:id="@+id/livedata"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/Widget.MaterialComponents.Button.TextButton"
+        android:text="LiveData"
+        />
+
 </LinearLayout>

@@ -24,6 +24,7 @@ public class MainFragment extends Fragment {
     binding.network.setOnClickListener(v -> open(new NetworkFragment()));
     binding.handler.setOnClickListener(v -> open(new HandlerFragment()));
     binding.rx.setOnClickListener(v -> open(new RxFragment()));
+    binding.livedata.setOnClickListener(v -> open(new LiveDataFragment()));
   }
 
   private void open(Fragment fragment) {
