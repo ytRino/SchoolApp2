@@ -23,6 +23,7 @@ public class MainFragment extends Fragment {
     binding.anr.setOnClickListener(v -> open(new AnrFragment()));
     binding.network.setOnClickListener(v -> open(new NetworkFragment()));
     binding.handler.setOnClickListener(v -> open(new HandlerFragment()));
+    binding.rx.setOnClickListener(v -> open(new RxFragment()));
   }
 
   private void open(Fragment fragment) {
