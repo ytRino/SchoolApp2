@@ -22,9 +22,9 @@ public class LifecycleFragment extends Fragment {
 
     // タスクで定期的にTextViewを追加する。
     // タスクを停止しないと、FragmentがDestroy状態になったときにクラッシュ
-    Task.TaskCallback taskCallback = time -> binding.getRoot().addView(createTextView(time));
+    LoopTask.TaskCallback taskCallback = time -> binding.getRoot().addView(createTextView(time));
     // タスクをライフサイクルに連動させる
-    getLifecycle().addObserver(new Task(taskCallback));
+    getLifecycle().addObserver(new LoopTask(taskCallback));
   }
 
   private TextView createTextView(long time) {

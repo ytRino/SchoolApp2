@@ -15,7 +15,7 @@ import androidx.lifecycle.LifecycleOwner;
  * </code>
  * </pre>
  */
-class Task implements DefaultLifecycleObserver {
+class LoopTask implements DefaultLifecycleObserver {
 
   /**
    * タスクが動いている間定期的に実行する処理を登録するコールバッククラス
@@ -24,7 +24,7 @@ class Task implements DefaultLifecycleObserver {
     void doWork(long time);
   }
 
-  public Task(TaskCallback work) {
+  public LoopTask(TaskCallback work) {
     this.work = work;
   }
 

@@ -19,6 +19,7 @@ public class MainFragment extends Fragment {
 
     MainFragmentBinding binding = MainFragmentBinding.bind(view);
     binding.lifecycle.setOnClickListener(v -> open(new LifecycleFragment()));
+    binding.livedata.setOnClickListener(v -> open(new LiveDataFragment()));
   }
 
   private void open(Fragment fragment) {
