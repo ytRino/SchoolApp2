@@ -1,2 +1,3 @@
 rootProject.name = "SchoolApp"
 include ':app'
+include ':app3'
