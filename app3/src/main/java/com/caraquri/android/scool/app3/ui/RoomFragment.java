@@ -23,9 +23,14 @@ class RoomFragment extends Fragment {
 
     viewModel = new ViewModelProvider(this).get(RoomViewModel.class);
 
+    UserAdapter adapter = new UserAdapter(position -> viewModel.delete(position));
+    binding.list.setAdapter(adapter);
+
     binding.button.setOnClickListener(v -> viewModel.insert(
         binding.inputFirst.getText().toString(),
         binding.inputSecond.getText().toString()
     ));
+
+    viewModel.getUsers().observe(getViewLifecycleOwner(), users -> adapter.submitList(users));
   }
 }
