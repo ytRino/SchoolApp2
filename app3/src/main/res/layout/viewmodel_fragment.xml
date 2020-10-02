@@ -7,7 +7,7 @@
     android:orientation="vertical"
     android:divider="@color/black"
     android:showDividers="middle"
-    tools:context=".ui.LiveDataFragment"
+    tools:context=".ui.ViewModelFragment"
     android:padding="16dp"
     >
 
