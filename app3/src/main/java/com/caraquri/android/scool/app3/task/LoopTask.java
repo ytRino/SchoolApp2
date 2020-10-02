@@ -1,4 +1,4 @@
-package com.caraquri.android.scool.app3.ui;
+package com.caraquri.android.scool.app3.task;
 
 import android.os.Handler;
 import android.os.Looper;
@@ -15,12 +15,12 @@ import androidx.lifecycle.LifecycleOwner;
  * </code>
  * </pre>
  */
-class LoopTask implements DefaultLifecycleObserver {
+public class LoopTask implements DefaultLifecycleObserver {
 
   /**
    * タスクが動いている間定期的に実行する処理を登録するコールバッククラス
    */
-  interface TaskCallback {
+  public interface TaskCallback {
     void doWork(long time);
   }
 

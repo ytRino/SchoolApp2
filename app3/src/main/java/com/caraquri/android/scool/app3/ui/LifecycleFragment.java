@@ -8,6 +8,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import com.caraquri.android.scool.app3.R;
 import com.caraquri.android.scool.app3.databinding.LifecycleFragmentBinding;
+import com.caraquri.android.scool.app3.task.LoopTask;
 
 public class LifecycleFragment extends Fragment {
 
