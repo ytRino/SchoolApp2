@@ -9,7 +9,7 @@ import androidx.lifecycle.ViewModelProvider;
 import com.caraquri.android.scool.app3.R;
 import com.caraquri.android.scool.app3.databinding.RoomFragmentBinding;
 
-class RoomFragment extends Fragment {
+public class RoomFragment extends Fragment {
 
   private RoomViewModel viewModel;
 
@@ -23,7 +23,7 @@ class RoomFragment extends Fragment {
 
     viewModel = new ViewModelProvider(this).get(RoomViewModel.class);
 
-    UserAdapter adapter = new UserAdapter(position -> viewModel.delete(position));
+    TodoAdapter adapter = new TodoAdapter(position -> viewModel.delete(position));
     binding.list.setAdapter(adapter);
 
     binding.button.setOnClickListener(v -> viewModel.insert(
@@ -31,6 +31,6 @@ class RoomFragment extends Fragment {
         binding.inputSecond.getText().toString()
     ));
 
-    viewModel.getUsers().observe(getViewLifecycleOwner(), users -> adapter.submitList(users));
+    viewModel.getUsers().observe(getViewLifecycleOwner(), todos -> adapter.submitList(todos));
   }
 }

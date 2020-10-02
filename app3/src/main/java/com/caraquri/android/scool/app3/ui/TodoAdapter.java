@@ -6,15 +6,15 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.ListAdapter;
 import androidx.recyclerview.widget.RecyclerView;
-import com.caraquri.android.scool.app3.data.entity.User;
+import com.caraquri.android.scool.app3.data.entity.Todo;
 import com.caraquri.android.scool.app3.databinding.ItemUserBinding;
 import java.util.Locale;
 
-public class UserAdapter extends ListAdapter<User, UserAdapter.ViewHolder> {
+public class TodoAdapter extends ListAdapter<Todo, TodoAdapter.ViewHolder> {
 
   private final OnItemClickListener onItemClickListener;
 
-  protected UserAdapter(@NonNull OnItemClickListener listener) {
+  protected TodoAdapter(@NonNull OnItemClickListener listener) {
     super(new DiffCallback());
     onItemClickListener = listener;
   }
@@ -40,10 +40,9 @@ public class UserAdapter extends ListAdapter<User, UserAdapter.ViewHolder> {
       this.binding = binding;
     }
 
-    public void bind(User user) {
+    public void bind(Todo todo) {
       String content =
-          String.format(Locale.US, "ID: %d\nfirst: %s, last: %s", user.uid, user.firstName,
-              user.lastName);
+          String.format(Locale.US, "ID: %d until: %sまで\n%s", todo.uid, todo.deadline, todo.title);
       binding.content.setText(content);
     }
   }
@@ -51,13 +50,13 @@ public class UserAdapter extends ListAdapter<User, UserAdapter.ViewHolder> {
   /**
    * リストが更新されたときに差分を計算するクラス
    */
-  static class DiffCallback extends DiffUtil.ItemCallback<User> {
+  static class DiffCallback extends DiffUtil.ItemCallback<Todo> {
 
-    @Override public boolean areItemsTheSame(@NonNull User oldItem, @NonNull User newItem) {
+    @Override public boolean areItemsTheSame(@NonNull Todo oldItem, @NonNull Todo newItem) {
       return oldItem.uid == newItem.uid;
     }
 
-    @Override public boolean areContentsTheSame(@NonNull User oldItem, @NonNull User newItem) {
+    @Override public boolean areContentsTheSame(@NonNull Todo oldItem, @NonNull Todo newItem) {
       return oldItem.equals(newItem);
     }
   }
