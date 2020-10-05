@@ -13,7 +13,7 @@ import java.util.List;
 @Dao
 public interface TodoDao {
 
-  @Query("select * from todo") LiveData<List<Todo>> todos();
+  @Query("select * from todo order by uid desc") LiveData<List<Todo>> todos();
 
   @Query("select * from todo where date = :date ") LiveData<List<Todo>> findByDate(String date);
 

@@ -12,18 +12,24 @@ import java.util.Locale;
 
 public class TodoAdapter extends ListAdapter<Todo, TodoAdapter.ViewHolder> {
 
-  private final OnItemClickListener onItemClickListener;
+  private final OnButtonClickListener onButtonClickListener;
 
-  protected TodoAdapter(@NonNull OnItemClickListener listener) {
+  protected TodoAdapter(@NonNull OnButtonClickListener listener) {
     super(new DiffCallback());
-    onItemClickListener = listener;
+    onButtonClickListener = listener;
   }
 
   @NonNull @Override public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-    ItemUserBinding binding = ItemUserBinding.inflate(LayoutInflater.from(parent.getContext()));
+    ItemUserBinding binding = ItemUserBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false);
     ViewHolder viewHolder = new ViewHolder(binding);
     binding.delete.setOnClickListener(
-        v -> onItemClickListener.onClick(viewHolder.getAdapterPosition()));
+        v -> {
+          int position = viewHolder.getAdapterPosition();
+          // 追加削除アニメーション中にNO_POSITIONになる場合がある
+          if (position != RecyclerView.NO_POSITION) {
+            onButtonClickListener.onClick(position);
+          }
+        });
     return viewHolder;
   }
 
@@ -42,7 +48,7 @@ public class TodoAdapter extends ListAdapter<Todo, TodoAdapter.ViewHolder> {
 
     public void bind(Todo todo) {
       String content =
-          String.format(Locale.US, "ID: %d until: %sまで\n%s", todo.uid, todo.deadline, todo.title);
+          String.format(Locale.US, "ID: %d 期限: %s\n%s", todo.uid, todo.deadline, todo.title);
       binding.content.setText(content);
     }
   }
@@ -61,7 +67,7 @@ public class TodoAdapter extends ListAdapter<Todo, TodoAdapter.ViewHolder> {
     }
   }
 
-  public interface OnItemClickListener {
+  public interface OnButtonClickListener {
     void onClick(int position);
   }
 }
