@@ -2,20 +2,17 @@ package com.caraquri.android.scool.app3.ui;
 
 import android.os.Bundle;
 import android.view.View;
-import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.work.Constraints;
 import androidx.work.NetworkType;
 import androidx.work.OneTimeWorkRequest;
-import androidx.work.PeriodicWorkRequest;
 import androidx.work.WorkManager;
 import androidx.work.WorkRequest;
 import com.caraquri.android.scool.app3.R;
 import com.caraquri.android.scool.app3.databinding.WorkFragmentBinding;
 import com.caraquri.android.scool.app3.worker.UploadWorker;
-import java.util.concurrent.TimeUnit;
 
 public class WorkFragment extends Fragment {
 

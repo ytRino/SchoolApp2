@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/main"
+    >
+
+    <fragment
+        android:id="@+id/main"
+        android:name="com.caraquri.android.scool.app3.ui.MainFragment"
+        android:label="work"
+        tools:layout="@layout/work_fragment"
+        >
+        <action
+            android:id="@+id/action_main_to_work"
+            app:destination="@id/work"
+            />
+        <action
+            android:id="@+id/action_main_to_lifecycle"
+            app:destination="@id/lifecycle"
+            />
+        <action
+            android:id="@+id/action_main_to_livedata"
+            app:destination="@id/livedata"
+            />
+        <action
+            android:id="@+id/action_main_to_viewmodel"
+            app:destination="@id/viewmodel"
+            />
+        <action
+            android:id="@+id/action_main_to_room"
+            app:destination="@id/room"
+            />
+    </fragment>
+
+    <fragment
+        android:id="@+id/lifecycle"
+        android:name="com.caraquri.android.scool.app3.ui.LifecycleFragment"
+        android:label="work"
+        tools:layout="@layout/lifecycle_fragment"
+        />
+
+    <fragment
+        android:id="@+id/livedata"
+        android:name="com.caraquri.android.scool.app3.ui.LiveDataFragment"
+        android:label="work"
+        tools:layout="@layout/livedata_fragment"
+        />
+
+    <fragment
+        android:id="@+id/viewmodel"
+        android:name="com.caraquri.android.scool.app3.ui.ViewModelFragment"
+        android:label="work"
+        tools:layout="@layout/viewmodel_fragment"
+        />
+
+    <fragment
+        android:id="@+id/room"
+        android:name="com.caraquri.android.scool.app3.ui.RoomFragment"
+        android:label="work"
+        tools:layout="@layout/room_fragment"
+        />
+
+    <fragment
+        android:id="@+id/work"
+        android:name="com.caraquri.android.scool.app3.ui.WorkFragment"
+        android:label="work"
+        tools:layout="@layout/work_fragment"
+        />
+</navigation>
