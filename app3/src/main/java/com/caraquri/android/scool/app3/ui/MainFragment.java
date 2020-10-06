@@ -22,6 +22,7 @@ public class MainFragment extends Fragment {
     binding.livedata.setOnClickListener(v -> open(new LiveDataFragment()));
     binding.viewmodel.setOnClickListener(v -> open(new ViewModelFragment()));
     binding.room.setOnClickListener(v -> open(new RoomFragment()));
+    binding.work.setOnClickListener(v -> open(new WorkFragment()));
   }
 
   private void open(Fragment fragment) {
