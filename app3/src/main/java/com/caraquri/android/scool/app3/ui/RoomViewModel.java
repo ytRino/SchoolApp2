@@ -31,6 +31,7 @@ public class RoomViewModel extends ViewModel {
   }
 
   public void delete(int position) {
+    // noinspection ConstantConditions
     notRecommended.execute(() -> todoDao.delete(todos.getValue().get(position)));
   }
 
