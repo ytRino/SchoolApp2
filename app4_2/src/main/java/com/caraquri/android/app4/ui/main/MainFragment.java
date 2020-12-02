@@ -6,6 +6,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.LiveData;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.room.Room;
 import com.caraquri.android.app4.R;
 import com.caraquri.android.app4.data.TodoDao;
@@ -18,14 +19,12 @@ import java.util.concurrent.Executors;
 import org.jetbrains.annotations.NotNull;
 
 /**
- * 4-1<br>
- * ほぼFragmentに書いてある状態
+ * 4-2<br>
+ * 役割を分割しMVVM+リポジトリパターンに移行した
  */
 public class MainFragment extends Fragment {
 
   private TodoAdapter adapter;
-
-  private Executor roomExecutor = Executors.newSingleThreadExecutor();
 
   public static MainFragment newInstance() {
     return new MainFragment();
@@ -39,18 +38,14 @@ public class MainFragment extends Fragment {
   public void onViewCreated(@NonNull @NotNull View view, @Nullable Bundle savedInstanceState) {
     super.onViewCreated(view, savedInstanceState);
 
-    TodoDao todoDao =
-        Room.databaseBuilder(requireContext().getApplicationContext(), TodoDatabase.class, "todo")
-            .fallbackToDestructiveMigration()
-            .build()
-            .todoDao();
-
     MainFragmentBinding binding = MainFragmentBinding.bind(view);
+
+    MainViewModel viewModel = new ViewModelProvider(this).get(MainViewModel.class);
+    viewModel.setUp(requireContext());
 
     TodoAdapter.OnButtonClickListener onDeleteClick = position -> {
       // 削除
-      Todo todo = adapter.getCurrentList().get(position);
-      roomExecutor.execute(() -> todoDao.delete(todo));
+      viewModel.delete(position);
     };
 
     adapter = new TodoAdapter(onDeleteClick);
@@ -60,14 +55,13 @@ public class MainFragment extends Fragment {
       // 追加
       String title = binding.inputTitle.getText().toString();
       String date = binding.inputDate.getText().toString();
-      Todo todo = new Todo(date, title);
-      roomExecutor.execute(() -> todoDao.insert(todo));
+      viewModel.insert(title, date);
     });
 
     binding.list.setAdapter(adapter);
 
     // 更新の監視
-    LiveData<List<Todo>> todos = todoDao.todos();
+    LiveData<List<Todo>> todos = viewModel.getTodos();
     todos.observe(getViewLifecycleOwner(), list -> adapter.submitList(list));
   }
 }
