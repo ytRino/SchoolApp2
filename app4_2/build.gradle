@@ -7,7 +7,7 @@ android {
     buildToolsVersion "30.0.2"
 
     defaultConfig {
-        applicationId "com.caraquri.android.app4"
+        applicationId "com.caraquri.android.app4_2"
         minSdkVersion 27
         targetSdkVersion 29
         versionCode 1
