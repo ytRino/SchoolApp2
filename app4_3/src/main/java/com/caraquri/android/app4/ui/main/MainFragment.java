@@ -10,12 +10,14 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.room.Room;
 import com.caraquri.android.app4.R;
+import com.caraquri.android.app4.SchoolApp;
 import com.caraquri.android.app4.data.TodoDao;
 import com.caraquri.android.app4.data.TodoDatabase;
 import com.caraquri.android.app4.data.TodoRepository;
 import com.caraquri.android.app4.data.TodoRepositoryImpl;
 import com.caraquri.android.app4.data.entity.Todo;
 import com.caraquri.android.app4.databinding.MainFragmentBinding;
+import com.caraquri.android.app4.di.Injector;
 import com.caraquri.android.app4.executor.AppExecutors;
 import java.util.List;
 import java.util.concurrent.Executors;
@@ -43,15 +45,9 @@ public class MainFragment extends Fragment {
 
     MainFragmentBinding binding = MainFragmentBinding.bind(view);
 
-    // ViewModelに必要な依存 に必要な依存 に必要な…を生成
-    TodoDatabase database =
-        Room.databaseBuilder(requireContext().getApplicationContext(), TodoDatabase.class, "todo")
-            .fallbackToDestructiveMigration()
-            .build();
-    TodoDao todoDao = database.todoDao();
-    AppExecutors executors = new AppExecutors(Executors.newSingleThreadExecutor(), ContextCompat.getMainExecutor(requireContext()));
-    TodoRepository repository = new TodoRepositoryImpl(todoDao, executors);
-    MainViewModel.Factory factory = new MainViewModel.Factory(repository);
+    Injector injector = SchoolApp.getInjector();
+
+    MainViewModel.Factory factory = injector.getViewModelInjector().getMainViewModelFactory();
 
     // Get ViewModel!
     MainViewModel viewModel = new ViewModelProvider(this, factory).get(MainViewModel.class);
