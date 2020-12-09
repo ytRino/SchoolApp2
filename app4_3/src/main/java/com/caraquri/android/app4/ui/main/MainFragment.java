@@ -40,7 +40,7 @@ public class MainFragment extends Fragment {
   }
 
   @Override
-  public void onViewCreated(@NonNull @NotNull View view, @Nullable Bundle savedInstanceState) {
+  public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
     super.onViewCreated(view, savedInstanceState);
 
     MainFragmentBinding binding = MainFragmentBinding.bind(view);
